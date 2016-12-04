@@ -35,30 +35,31 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
      */
     public BoardGUIWindow(int rows, int columns) {
         super("Game of Life - Davide Tonin");
-        this.rows = rows;
-        this.columns = columns;
-        this.board = new Board(rows, columns);
-        
-        this.menuBar = new JMenuBar();
-        this.menuOptions = new JMenu("Options");
-        this.startOption = new JMenuItem("Start");
-        this.randomOption = new JMenuItem("Random");
-        this.menuOptions.add(this.startOption);
-        this.menuOptions.add(this.randomOption);
-        this.menuBar.add(this.menuOptions);
-        this.setJMenuBar(menuBar);
-        
-        this.startOption.addActionListener(this);
-        this.randomOption.addActionListener(this);
-        this.graphicBoardPanel = new JPanel();
-        
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(600, 600);
         this.setLocation(300, 300);
         this.setVisible(true);
         
-        this.contentPane = getContentPane();
+        this.rows = rows;
+        this.columns = columns;
+        this.board = new Board(rows, columns);
+        //set the menu bar
+        this.menuBar = new JMenuBar();
+        this.menuOptions = new JMenu("Options");
+        this.startOption = new JMenuItem("Start");
+        this.randomOption = new JMenuItem("Random");
+        //add the items of menu
+        this.menuOptions.add(this.startOption);
+        this.menuOptions.add(this.randomOption);
+        this.menuBar.add(this.menuOptions);
+        this.setJMenuBar(menuBar);
+        //add menu events
+        this.startOption.addActionListener(this);
+        this.randomOption.addActionListener(this);
+        
+        this.graphicBoardPanel = new JPanel();
         this.graphicBoardPanel.setLayout(new GridLayout(rows, columns));
+        this.contentPane = getContentPane();
         
         paintBoard();
     }
@@ -114,10 +115,13 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //check if the source is a menu's item or a cell(button)
         if (e.getSource() instanceof JMenuItem) {
             JMenuItem source = (JMenuItem)e.getSource();
+            //check which item was pressed
             if (source.getText() == "Start") {
                 try {
+                    //ask the update delay to the user
                     int updateDelay = Integer.parseInt(JOptionPane.showInputDialog(null, "Insert update delay:"));
                     this.menuOptions.remove(this.randomOption);                    
                     this.transition(updateDelay);                  
@@ -127,7 +131,9 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
             }
             else if (source.getText() == "Random"){
                 try {
+                    //ask the number of alive cells to the user
                     int nAliveCells = Integer.parseInt(JOptionPane.showInputDialog(null, "Insert number of alive cells:"));
+                    //check if the value is minor of the maximum possible
                     if (nAliveCells < this.rows*this.columns) {
                         this.init(nAliveCells);
                     }
