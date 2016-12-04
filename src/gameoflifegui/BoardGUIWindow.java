@@ -120,8 +120,7 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
                 try {
                     int updateDelay = Integer.parseInt(JOptionPane.showInputDialog(null, "Insert update delay:"));
                     this.menuOptions.remove(this.randomOption);                    
-                    this.transition(updateDelay);
-                    System.out.println("Giro");                    
+                    this.transition(updateDelay);                  
                 } catch(Exception ex) {
                     System.out.println("Valore inserito errato");
                 }
