@@ -63,6 +63,9 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
         paintBoard();
     }
     
+    /**
+     * Paint the board
+     */
     public void paintBoard() {
         this.contentPane.removeAll();
         this.graphicBoardPanel.removeAll();
