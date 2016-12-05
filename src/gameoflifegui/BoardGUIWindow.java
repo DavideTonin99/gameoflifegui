@@ -47,7 +47,7 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
         this.menuBar = new JMenuBar();
         this.menuOptions = new JMenu("Options");
         this.startOption = new JMenuItem("Start");
-        this.randomOption = new JMenuItem("Random");
+        this.randomOption = new JMenuItem("RandomFill");
         //add the items of menu
         this.menuOptions.add(this.startOption);
         this.menuOptions.add(this.randomOption);
@@ -119,10 +119,10 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
         if (e.getSource() instanceof JMenuItem) {
             JMenuItem source = (JMenuItem)e.getSource();
             //check which item was pressed
-            if (source.getText() == "Start") {                  
+            if (source.getText() == this.startOption.getText()) {                  
                 this.transition(200);                  
             }
-            else if (source.getText() == "Random"){
+            else if (source.getText() == this.randomOption.getText()){
                 try {
                     //ask the number of alive cells to the user
                     int nAliveCells = Integer.parseInt(JOptionPane.showInputDialog(null, "Insert number of alive cells:"));
