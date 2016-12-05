@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 /**
  * Represents the game window
  * @author Tonin Davide davide9935@gmail.com
- * @version 2.0 2016-11-29
+ * @version 1.0 2016-11-29
  */
 public class BoardGUIWindow extends JFrame implements ActionListener{  
     private int rows;
@@ -53,7 +53,7 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
         this.menuOptions.add(this.randomOption);
         this.menuBar.add(this.menuOptions);
         this.setJMenuBar(menuBar);
-        //add menu events
+        //add menu event listeners
         this.startOption.addActionListener(this);
         this.randomOption.addActionListener(this);
         
@@ -119,15 +119,8 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
         if (e.getSource() instanceof JMenuItem) {
             JMenuItem source = (JMenuItem)e.getSource();
             //check which item was pressed
-            if (source.getText() == "Start") {
-                try {
-                    //ask the update delay to the user
-                    int updateDelay = Integer.parseInt(JOptionPane.showInputDialog(null, "Insert update delay:"));
-                    this.menuOptions.remove(this.randomOption);                    
-                    this.transition(updateDelay);                  
-                } catch(Exception ex) {
-                    System.out.println("Valore inserito errato");
-                }
+            if (source.getText() == "Start") {                  
+                this.transition(200);                  
             }
             else if (source.getText() == "Random"){
                 try {
