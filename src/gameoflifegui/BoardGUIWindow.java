@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * @author Tonin Davide davide9935@gmail.com
  * @version 1.0 2016-11-29
  */
-public class BoardGUIWindow extends JFrame implements ActionListener{  
+public class BoardGUIWindow extends JFrame implements ActionListener, Runnable{  
     private int rows;
     private int columns;
     private Board board;
@@ -27,6 +27,8 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
     private JMenuItem randomOption;
     private JPanel graphicBoardPanel;
     private Container contentPane;
+    private int updateDelay;
+    
 
     /**
      * Base constructor
@@ -87,12 +89,12 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
     public void init(int numberOfAliveCells) {
         this.board.init(numberOfAliveCells);
         this.paintBoard();
-        
-        try {
-                Thread.sleep(2000);
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-                }
+//        
+//        try {
+//                Thread.sleep(2000);
+//            } catch(InterruptedException ex) {
+//                Thread.currentThread().interrupt();
+//                }
     }
     
     /**
@@ -100,9 +102,21 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
      * @param updateDelay 
      */
     public void transition(int updateDelay) {
-        this.board.update(updateDelay);
-        this.paintBoard();
+        this.updateDelay = updateDelay;
+        Thread t = new Thread(this);
+        t.start();
     }
+
+    @Override
+    public void run() {
+        while(true) {
+            System.out.println("run");
+            if(updateDelay > 0) {
+                this.board.update(updateDelay);
+                this.paintBoard();
+            }
+        }
+    }    
     
     /**
      * Return the board
@@ -151,4 +165,5 @@ public class BoardGUIWindow extends JFrame implements ActionListener{
             this.board.setElement(cell);
         }
     }
+
 }
