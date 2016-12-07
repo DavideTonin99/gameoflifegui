@@ -9,9 +9,6 @@ package gameoflifegui;
 public class GameOfLifeGUIApp {
     
     public static void main(String[]args){
-        BoardGUIWindow b = new BoardGUIWindow(20, 20);
-        //b.init(200);
-        //b.transition(300);
-        //System.out.println(b);
+        BoardGUIWindow b = new BoardGUIWindow(10, 10);
     }
 }

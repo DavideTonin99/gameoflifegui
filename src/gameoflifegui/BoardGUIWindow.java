@@ -65,7 +65,7 @@ public class BoardGUIWindow extends JFrame implements ActionListener, Runnable{
         
         paintBoard();
     }
-    
+
     /**
      * Paint the board
      */
@@ -110,7 +110,6 @@ public class BoardGUIWindow extends JFrame implements ActionListener, Runnable{
     @Override
     public void run() {
         while(true) {
-            System.out.println("run");
             if(updateDelay > 0) {
                 this.board.update(updateDelay);
                 this.paintBoard();
@@ -133,13 +132,14 @@ public class BoardGUIWindow extends JFrame implements ActionListener, Runnable{
         if (e.getSource() instanceof JMenuItem) {
             JMenuItem source = (JMenuItem)e.getSource();
             //check which item was pressed
-            if (source.getText() == this.startOption.getText()) {                  
-                this.transition(200);                  
+            if (source.getText().equals(this.startOption.getText())) {                  
+                this.transition(600);                  
             }
-            else if (source.getText() == this.randomOption.getText()){
+            else if (source.getText().equals(this.randomOption.getText())){
                 try {
                     //ask the number of alive cells to the user
-                    int nAliveCells = Integer.parseInt(JOptionPane.showInputDialog(null, "Insert number of alive cells:"));
+                    int nAliveCells = Integer.parseInt(JOptionPane.showInputDialog(null, "Insert number of alive cells\n"
+                            + "(the number must be minor than " + this.rows*this.columns + "):"));
                     //check if the value is minor of the maximum possible
                     if (nAliveCells < this.rows*this.columns) {
                         this.init(nAliveCells);
