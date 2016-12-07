@@ -2,7 +2,7 @@ package gameoflifegui;
 
 /**
  * Represents the game board
- * @author Tonin Davide davide9935@gmail.com
+ * @author Tonin Davide davide9935@gmail.com, maurizio.boscaini@gmail.com
  * @version 1.0 2016-10-21
  */
 import java.util.Random;
