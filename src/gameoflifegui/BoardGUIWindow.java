@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 /**
  * Represents the game window
- * @author Tonin Davide davide9935@gmail.com
+ * @author Tonin Davide davide9935@gmail.com, maurizio.boscaini@gmail.com
  * @version 1.0 2016-11-29
  */
 public class BoardGUIWindow extends JFrame implements ActionListener, Runnable{  
